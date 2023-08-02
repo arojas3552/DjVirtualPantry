@@ -1,3 +1,6 @@
-from django.shortcuts import render
+from django.views.generic import ListView
+from .models import FoodList
 
-# Create your views here.
+class ListListView(ListView):
+    model = FoodList
+    template_name = "virtualPantry_app/index.html"
