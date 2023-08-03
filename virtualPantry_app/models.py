@@ -11,12 +11,11 @@ class Person(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
 
-#TODO: name must be categories
 class FoodList(models.Model):
     title = models.CharField(max_length=100, unique=True)
 
     def get_absolute_url(self):
-        return reverse("list", args=[self.id])
+        return reverse("foodlists", args=[self.id])
 
     def __str__(self):
         return self.title

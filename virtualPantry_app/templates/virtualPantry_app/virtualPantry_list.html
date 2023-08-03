@@ -1,0 +1,35 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    <div>
+        <div>
+            <h3>Your list:</h3>
+            <h5>{{ food_list.productName | upper }}</h5>
+        </div>
+        <ul>
+            {% for item in object_list %}
+            <li>
+                <div>
+                    <div
+                        role="button"
+                        onclick="location.href='#'">
+                        {{ item.productName }}
+                        (Expires {{ item.expire_date | date:"l, F j" }})
+                    </div>
+                </div>
+            </li>
+            {% empty %}
+            <p>There is no food in your pantry.</p>
+            {% endfor %}
+        </ul>
+        <p>
+            <input
+                value="Add a new item"
+                type="button"
+                onclick="location.href='#'" />
+        </p>
+    </div>
+</div>
+{% endblock %}
