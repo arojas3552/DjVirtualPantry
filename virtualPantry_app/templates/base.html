@@ -7,21 +7,38 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--Simple.css-->
-    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css"> -->
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
     <title>Virtual Pantry</title>
 </head>
 
 <body>
-    <div>
-        <h1 onclick="location.href='{% url "index" %}'">
-            Virtual Pantry
-        </h1>
+
+    <div class="container-fluid">
+        <ul class="navbar bg-white ">
+            <a class="navbar-brand link-dark" onclick="location.href='{% url "index" %}'">Virtual Pantry</a>
+          
+            <div class="d-flex flex-wrap navbar-expand-sm justify-content-end">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-dark" onclick="location.href='{% url "index" %}'">Recipes</button>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-dark" onclick="location.href='{% url "index" %}'">Log In</button>
+                    </li>
+                </ul>
+            </div>
+        </ul>
+
+        <div class="container-fluid">
+            {% block content %}
+            This content will be replaced by different html code for each page.
+            {% endblock %}
+        </div>
     </div>
-    <div>
-        {% block content %}
-        This content will be replaced by different html code for each page.
-        {% endblock %}
-    </div>
+
 </body>
 
 </html>
