@@ -15,6 +15,14 @@
         value="Cancel"
         type="button"
         onclick="location.href='{% url "list" food_list.id %}'">
+        
+        {% if object %}
+        <input
+            value="Delete this item"
+            type="button"
+            onclick="location.href=
+            '{% url "item-delete" food_list.id object.id %}'">
+    {% endif %}
 </form>
 
 {% endblock %}

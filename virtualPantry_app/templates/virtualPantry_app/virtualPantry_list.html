@@ -29,6 +29,11 @@
                 value="Add a new item"
                 type="button"
                 onclick="location.href='{% url "item-add" food_list.id %}'" />
+                <input
+                value="Delete all items in your fridge"
+                type="button"
+                onclick="location.href=
+                '{% url "list-delete" food_list.id %}'" />
         </p>
     </div>
 </div>

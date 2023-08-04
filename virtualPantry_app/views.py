@@ -1,5 +1,5 @@
-from django.urls import reverse
-from django.views.generic import (ListView,CreateView,UpdateView,)
+from django.urls import reverse, reverse_lazy
+from django.views.generic import (ListView,CreateView,UpdateView,DeleteView)
 
 from .models import FoodList, Product
 
@@ -75,3 +75,21 @@ class ItemUpdate(UpdateView):
 
     def get_success_url(self):
         return reverse("list", args=[self.object.food_list_id])
+    
+
+#DELETE
+
+class ListDelete(DeleteView):
+    model = FoodList
+    success_url = reverse_lazy("index")
+
+class ItemDelete(DeleteView):
+    model = Product
+
+    def get_success_url(self):
+        return reverse_lazy("list", args=[self.kwargs["list_id"]])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["food_list"] = self.object.food_list
+        return context
