@@ -13,9 +13,10 @@ class Person(models.Model):
 
 class FoodList(models.Model):
     title = models.CharField(max_length=100, unique=True)
+   # slug=models.SlugField(max_length=250)
 
     def get_absolute_url(self):
-        return reverse("foodlists", args=[self.id])
+        return reverse("list", args=[self.id])
 
     def __str__(self):
         return self.title
@@ -43,8 +44,8 @@ class Product(models.Model):
         )
 
     def __str__(self):
-        return f"{self.productName}: Use by: {self.expire_date}"
+        return f"{self.productName}"
 
     
-    #class Meta:
-    #    ordering = ["expire_date"]
+    class Meta:
+        ordering = ["expire_date"]
