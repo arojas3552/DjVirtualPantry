@@ -34,5 +34,29 @@ urlpatterns = [
         name="item-delete",
     ),
 
+    #RECIPE feature
+    path(
+        "recipe/",
+        views.RecipeIndexView.as_view(),
+        name="recipe-index",
+    ),
+
+    path(
+        "recipe/<int:recipe_id>/",
+        views.RecipeIngredientView.as_view(),
+        name="recipe-view",
+    ),
+
+    #ADD 
+    path(
+        "recipe/<int:recipe_id>/add/",
+        views.IngredientCreate.as_view(),
+        name="ingredient-add",
+    ),
+    path(
+        "recipe/add/",
+        views.RecipeCreate.as_view(),
+        name="recipe-add",
+    ),
 
 ]

@@ -5,18 +5,17 @@
 <div>
     <div>
         <div>
-            <h3>Your list:</h3>
-            <h5>{{ food_list.title | upper }}</h5>
+            <h5 class="text-black-50">{{ food_list.title }}</h5>
         </div>
         <ul>
             {% for food in object_list %}
             <li>
-                <div>
+                <div >
                     <div
                         role="button"
                         onclick="location.href='{% url "item-update" food_list.id food.id %}'">
                         {{ food.productName }}
-                        (Expires {{ food.expire_date | date:"l, F j" }})
+                      
                     </div>
                 </div>
             </li>
@@ -34,6 +33,7 @@
                 type="button"
                 onclick="location.href=
                 '{% url "list-delete" food_list.id %}'" />
+               
         </p>
     </div>
 </div>

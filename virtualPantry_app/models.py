@@ -7,13 +7,45 @@ from django.urls import reverse
 def one_week_hence():
     return timezone.now() + timezone.timedelta(days=7) #in one week...
 
-class Person(models.Model):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
+class RecipeIndex(models.Model):
+    indexName = models.CharField(max_length=250, unique=True)
+
+    def get_absolute_url(self):
+        return reverse("recipe-index", args=[self.id])
+
+    def __str__(self):
+        return self.indexName
+    
+class RecipeDescription(models.Model):
+    recipeName = models.CharField(max_length=250, unique=True)
+    recipe_description = models.TextField();
+    recipeList = models.ForeignKey(RecipeIndex, on_delete=models.CASCADE)
+
+    def get_absolute_url(self):
+        return reverse("recipe-list", args=[self.id])
+
+    def __str__(self):
+        return self.recipeName
+
+class Ingredients(models.Model):
+    PRODUCT_CATEGORIES = [
+        ("F", "Fruit"),
+        ("V", "Vegetable"),
+        ("G", "Grains"),
+        ("P", "Protein"),
+        ("D", "Dairy"),
+        ("O", "Other"),
+    ]
+    ingredientName = models.CharField(max_length=200,unique=True)
+    category = models.CharField(max_length=1, choices=PRODUCT_CATEGORIES)
+    ingredientList = models.ForeignKey(RecipeDescription, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.ingredientName
+    
 
 class FoodList(models.Model):
     title = models.CharField(max_length=100, unique=True)
-   # slug=models.SlugField(max_length=250)
 
     def get_absolute_url(self):
         return reverse("list", args=[self.id])

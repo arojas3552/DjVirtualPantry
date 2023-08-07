@@ -2,28 +2,28 @@
 {% extends "base.html" %}
 {% block content %}
 <!--index.html-->
-{% if object_list %}
-<h3>My Pantry</h3>
-{% endif %}
-<ul>
+
+<ul class="list-unstyled">
     {% for foodlist in object_list %}
     <li>
         <div
             role="button"
             onclick="location.href='{% url "list" foodlist.id %}'">
+            
             {{ foodlist.title }}
         </div>
     </li>
     {% empty %}
     <h4>You have no lists!</h4>
+    <p>
+        <input
+            value="Add a new list"
+            type="button"
+            onclick="location.href='{% url "list-add" %}'"/>
+    </p>
     {% endfor %}
 </ul>
 
-<p>
-    <input
-        value="Add a new list"
-        type="button"
-        onclick="location.href='{% url "list-add" %}'"/>
-</p>
+
 
 {% endblock %}
