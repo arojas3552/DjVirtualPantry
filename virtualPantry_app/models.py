@@ -18,7 +18,7 @@ class RecipeIndex(models.Model):
     
 class RecipeDescription(models.Model):
     recipeName = models.CharField(max_length=250, unique=True)
-    recipe_description = models.TextField();
+    recipe_instructions = models.TextField();
     recipeList = models.ForeignKey(RecipeIndex, on_delete=models.CASCADE)
 
     def get_absolute_url(self):

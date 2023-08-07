@@ -22,9 +22,11 @@
           
             <div class="d-flex flex-wrap navbar-expand-sm justify-content-end">
                 <ul class="navbar-nav">
+                    {% for recipe in object_list %}
                     <li class="nav-item">
-                        <button type="button" class="btn link-dark" onclick="location.href='{% url "index" %}'">Recipes</button>
+                        <button type="button" class="btn link-dark" onclick="location.href='{% url "recipe-index" recipe.id %}'">Recipes</button>
                     </li>
+                    {% endfor %}
                     <li class="nav-item">
                         <button type="button" class="btn link-dark" onclick="location.href='{% url "index" %}'">Log In</button>
                     </li>

@@ -12,10 +12,15 @@
             {{ ingredientList.ingredientName }}
         </div>
     </li>
-
+    {% empty %}
+    <h4>You have no ingredients!</h4>
+    <p>
+        <input
+            value="Add a new ingredient"
+            type="button"
+            onclick="location.href='{% url "ingredient-add" %}'"/>
+    </p>
     {% endfor %}
 </ul>
-
-
 
 {% endblock %}

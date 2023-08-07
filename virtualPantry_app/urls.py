@@ -35,28 +35,36 @@ urlpatterns = [
     ),
 
     #RECIPE feature
+    
+    
     path(
-        "recipe/",
+        "recipe/<int:index_id>/",
         views.RecipeIndexView.as_view(),
         name="recipe-index",
     ),
 
     path(
-        "recipe/<int:recipe_id>/",
+        "recipe/<int:index_id>/recipeid/<int:recipe_id>/",
         views.RecipeIngredientView.as_view(),
         name="recipe-view",
     ),
 
     #ADD 
     path(
-        "recipe/<int:recipe_id>/add/",
-        views.IngredientCreate.as_view(),
-        name="ingredient-add",
+        "recipe/add/",
+        views.RecipeIndexCreate.as_view(),
+        name="recipeIndex-add",
     ),
     path(
-        "recipe/add/",
+        "recipe/<int:index_id>/recipeid/add",
         views.RecipeCreate.as_view(),
         name="recipe-add",
     ),
+    path(
+        "recipe/<int:index_id>/recipeid/<int:recipe_id>/ingredient/add/",
+        views.IngredientCreate.as_view(),
+        name="ingredient-add",
+    ),
+    
 
 ]

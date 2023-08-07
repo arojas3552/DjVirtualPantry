@@ -97,15 +97,24 @@ class ItemDelete(DeleteView):
 
 #RECIPE FEATURE
 class RecipeIndexView(ListView):
-    model=RecipeIndex
+    model=RecipeDescription
     template_name = "virtualPantry_app/recipe_index.html"
 
+    def get_queryset(self):
+        return RecipeDescription.objects.filter(recipeList_id=self.kwargs["index_id"])
+
+    def get_context_data(self):
+        context = super().get_context_data()
+        context["recipe_list"] = RecipeIndex.objects.get(id=self.kwargs["index_id"])
+        return context
+
+
 class RecipeIngredientView(ListView):
-    model=RecipeDescription
+    model=Ingredients
     template_name = "virtualPantry_app/recipe_list.html"
 
     def get_queryset(self):
-        return RecipeDescription.objects.filter(food_list_id=self.kwargs["recipe_id"])
+        return Ingredients.objects.filter(food_list_id=self.kwargs["recipe_id"])
     
     def get_context_data(self):
         context = super().get_context_data()
@@ -113,6 +122,17 @@ class RecipeIngredientView(ListView):
         context["ingredient_list"] = Ingredients.objects.get(id=self.kwargs["recipe_id"])
         return context
     
+
+class RecipeIndexCreate(CreateView):
+    model = RecipeIndex
+    fields = ["indexName"]
+
+    def get_context_data(self):
+        context = super(ListCreate, self).get_context_data()
+        context["indexName"] = "Add a new recipe Index"
+        return context
+
+
 class IngredientCreate(CreateView):
     model = Ingredients
     fields = [
@@ -136,40 +156,31 @@ class IngredientCreate(CreateView):
         return context
 
     def get_success_url(self):
-        return reverse("recipe-view", args=[self.object.recipe_list_id])
-
+        return reverse("recipe-view", args=[self.object.ingredient_list_id])
 
 
 class RecipeCreate(CreateView):
     model = RecipeDescription
     fields = [
-        "recipe_description",
+        "recipe_instructions",
         "recipeName",
         "recipeList",
     ]
 
     def get_initial(self):
         initial_data = super(ItemCreate, self).get_initial()
-        ingredient_list = RecipeDescription.objects.get(id=self.kwargs["recipe_id"])
-        initial_data["ingredient_list"] = ingredient_list
+        recipe_list = RecipeIndex.objects.get(id=self.kwargs["recipe_id"])
+        initial_data["recipe_list"] = recipe_list
         return initial_data
 
     def get_context_data(self):
         context = super(ItemCreate, self).get_context_data()
-        ingredient_list = RecipeDescription.objects.get(id=self.kwargs["recipe_id"])
-        context["ingredient_list"] = ingredient_list
-        context["IngredientName"] = "Add a new ingredient"
-        context["category"] = "Add category"
+        recipe_list = RecipeIndex.objects.get(id=self.kwargs["recipe_id"])
+        context["recipe_list"] = recipe_list
+        context["recipeName"] = "Add a new recipe"
+        context["recipe_instructions"] = "Add instructions"
         return context
 
     def get_success_url(self):
-        return reverse("recipe-view", args=[self.object.recipe_list_id])
+        return reverse("recipe-index", args=[self.object.recipeList_id])
     
-
-#class RecipeRec(ListView):
-#    model=Ingredients
-#    template_name = "virtualPantry_app/recipeRec_list.html"
-
- #   def get_queryset(self):
- #       return Ingredients.objects.filter(recipe_list_id=self.kwargs["recipe_id"])
- #   #get context data update? modift whats seen? TODO
