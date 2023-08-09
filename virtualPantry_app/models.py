@@ -17,27 +17,27 @@ class RecipeIndex(models.Model):
         return self.indexName
     
 class RecipeDescription(models.Model):
+    RECIPE_CATEGORIES = [
+        ("b", "Breakfast"),
+        ("l", "Lunch"),
+        ("d", "Dinner"),
+        ("t", "Desert"),
+        ("s", "Snack"),
+        ("o", "Other"),
+    ]
     recipeName = models.CharField(max_length=250, unique=True)
     recipe_instructions = models.TextField();
-    recipeList = models.ForeignKey(RecipeIndex, on_delete=models.CASCADE)
+    recipe_list = models.ForeignKey(RecipeIndex, on_delete=models.CASCADE)
+    recipeCategory = models.CharField(max_length=1, choices=RECIPE_CATEGORIES,default='Other')
 
     def get_absolute_url(self):
-        return reverse("recipe-list", args=[self.id])
+        return reverse("recipe-view", args=[self.id])
 
     def __str__(self):
         return self.recipeName
 
 class Ingredients(models.Model):
-    PRODUCT_CATEGORIES = [
-        ("F", "Fruit"),
-        ("V", "Vegetable"),
-        ("G", "Grains"),
-        ("P", "Protein"),
-        ("D", "Dairy"),
-        ("O", "Other"),
-    ]
     ingredientName = models.CharField(max_length=200,unique=True)
-    category = models.CharField(max_length=1, choices=PRODUCT_CATEGORIES)
     ingredientList = models.ForeignKey(RecipeDescription, on_delete=models.CASCADE)
 
     def __str__(self):

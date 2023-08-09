@@ -20,6 +20,36 @@ class ItemListView(ListView):
         context["food_list"] = FoodList.objects.get(id=self.kwargs["list_id"])
         return context
     
+
+#RECIPE FEATURE
+class RecipeIndexView(ListView):
+    model=RecipeDescription
+    template_name = "virtualPantry_app/recipe_index.html"
+
+    def get_queryset(self):
+        return RecipeDescription.objects.filter(recipe_list_id=self.kwargs["index_id"])
+
+    def get_context_data(self):
+        context = super().get_context_data()
+        context["recipe_list"] = RecipeIndex.objects.get(id=self.kwargs["index_id"])
+        return context
+
+    
+
+class RecipeIngredientView(ListView):
+    model=Ingredients
+    template_name = "virtualPantry_app/recipe_list.html"
+
+    def get_queryset(self):
+        return Ingredients.objects.filter(ingredientList_id=self.kwargs["recipe_id"])
+    
+    def get_context_data(self):
+        context = super().get_context_data()
+        context["recipe_instructions"] = RecipeDescription.objects.get(id=self.kwargs["recipe_id"])
+        context["recipe_name"] = RecipeDescription.objects.get(id=self.kwargs["recipe_id"])
+        return context
+    
+
 #CREATE
 
 class ListCreate(CreateView):
@@ -93,35 +123,6 @@ class ItemDelete(DeleteView):
         context = super().get_context_data(**kwargs)
         context["food_list"] = self.object.food_list
         return context
-    
-
-#RECIPE FEATURE
-class RecipeIndexView(ListView):
-    model=RecipeDescription
-    template_name = "virtualPantry_app/recipe_index.html"
-
-    def get_queryset(self):
-        return RecipeDescription.objects.filter(recipeList_id=self.kwargs["index_id"])
-
-    def get_context_data(self):
-        context = super().get_context_data()
-        context["recipe_list"] = RecipeIndex.objects.get(id=self.kwargs["index_id"])
-        return context
-
-
-class RecipeIngredientView(ListView):
-    model=Ingredients
-    template_name = "virtualPantry_app/recipe_list.html"
-
-    def get_queryset(self):
-        return Ingredients.objects.filter(food_list_id=self.kwargs["recipe_id"])
-    
-    def get_context_data(self):
-        context = super().get_context_data()
-        context["recipe_description"] = RecipeDescription.objects.get(id=self.kwargs["recipe_id"])
-        context["ingredient_list"] = Ingredients.objects.get(id=self.kwargs["recipe_id"])
-        return context
-    
 
 class RecipeIndexCreate(CreateView):
     model = RecipeIndex
@@ -138,7 +139,6 @@ class IngredientCreate(CreateView):
     fields = [
         "ingredient_list",
         "IngredientName",
-        "category",
     ]
 
     def get_initial(self):
@@ -152,11 +152,10 @@ class IngredientCreate(CreateView):
         ingredient_list = RecipeDescription.objects.get(id=self.kwargs["recipe_id"])
         context["ingredient_list"] = ingredient_list
         context["IngredientName"] = "Add a new ingredient"
-        context["category"] = "Add category"
         return context
 
     def get_success_url(self):
-        return reverse("recipe-view", args=[self.object.ingredient_list_id])
+        return reverse("recipe-view", args=[self.object.ingredientList])
 
 
 class RecipeCreate(CreateView):
@@ -164,7 +163,8 @@ class RecipeCreate(CreateView):
     fields = [
         "recipe_instructions",
         "recipeName",
-        "recipeList",
+        "recipe_list",
+        "category",
     ]
 
     def get_initial(self):
@@ -179,8 +179,9 @@ class RecipeCreate(CreateView):
         context["recipe_list"] = recipe_list
         context["recipeName"] = "Add a new recipe"
         context["recipe_instructions"] = "Add instructions"
+        context["category"] = "Add category"
         return context
 
     def get_success_url(self):
-        return reverse("recipe-index", args=[self.object.recipeList_id])
+        return reverse("recipe-index", args=[self.object.ingredientList_id])
     

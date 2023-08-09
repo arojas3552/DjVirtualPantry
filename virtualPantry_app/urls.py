@@ -7,6 +7,18 @@ urlpatterns = [
     
     path("list/<int:list_id>/",
         views.ItemListView.as_view(), name="list"),
+    
+    path(
+        "recipe/<int:index_id>/",
+        views.RecipeIndexView.as_view(),
+        name="recipe-index",
+    ),
+
+    path(
+        "recipe/<int:index_id>/recipeid/<int:recipe_id>/",
+        views.RecipeIngredientView.as_view(),
+        name="recipe-view",
+    ),
 
     # CRUD patterns for FoodLists
     path("list/add/", views.ListCreate.as_view(), name="list-add"),
@@ -32,21 +44,6 @@ urlpatterns = [
         "list/<int:list_id>/item/<int:pk>/delete/",
         views.ItemDelete.as_view(),
         name="item-delete",
-    ),
-
-    #RECIPE feature
-    
-    
-    path(
-        "recipe/<int:index_id>/",
-        views.RecipeIndexView.as_view(),
-        name="recipe-index",
-    ),
-
-    path(
-        "recipe/<int:index_id>/recipeid/<int:recipe_id>/",
-        views.RecipeIngredientView.as_view(),
-        name="recipe-view",
     ),
 
     #ADD 

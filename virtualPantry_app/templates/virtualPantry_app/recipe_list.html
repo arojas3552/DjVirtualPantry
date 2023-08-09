@@ -1,26 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
 <!--recipe_list.html-->
+<h1>{{recipe_name}}</h1>
 
 <ul>
     {% for ingredientList in object_list %}
     <li>
-        <div
-            role="button"
-            onclick="location.href='{% url "recipe-view" ingredientList.id %}'">
-            
+        <div>
             {{ ingredientList.ingredientName }}
         </div>
     </li>
-    {% empty %}
-    <h4>You have no ingredients!</h4>
-    <p>
-        <input
-            value="Add a new ingredient"
-            type="button"
-            onclick="location.href='{% url "ingredient-add" %}'"/>
-    </p>
     {% endfor %}
 </ul>
+
+<h3>Instructions: </h3>
+{{recipe_instructions.recipe_instructions}}
 
 {% endblock %}

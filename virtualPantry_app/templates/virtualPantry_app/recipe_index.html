@@ -10,19 +10,11 @@
     <li>
         <div
             role="button"
-            onclick="location.href='{% url "recipe-index" recipe.id %}'">
-            
+            onclick="location.href='{% url "recipe-view" recipe_list.id recipe.id %}'">
             {{ recipe.recipeName }}
         </div>
     </li>
-    {% empty %}
-    <h4>You have no recipe index!</h4>
-    <p>
-        <input
-            value="Add a new recipe"
-            type="button"
-            onclick="location.href='{% url "recipe-add" %}'"/>
-    </p>
+ 
     {% endfor %}
 </ul>
 
