@@ -21,12 +21,10 @@
             <a class="navbar-brand link-dark" onclick="location.href='{% url "index" %}'">Virtual Pantry</a>
             <div class="d-flex flex-wrap navbar-expand-sm justify-content-end">
                 <ul class="navbar-nav">
-                    {% for recipe in object_list %}
-                    <li class="nav-item">
-                        <button type="button" class="btn link-dark" onclick="location.href='{% url "recipe-index" recipe.id %}'">Recipes</button>
+                    <li >
+                        <button type="button" class="btn link-dark" onclick="location.href='{% url "recipe-index" %}'">Recipes</button>
                     </li>
-                    {% endfor %}
-                    <li class="nav-item">
+                    <li>
                         <button type="button" class="btn link-dark" onclick="location.href='{% url "index" %}'">Log In</button>
                     </li>
                 </ul>

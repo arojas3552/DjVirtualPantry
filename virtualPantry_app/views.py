@@ -27,11 +27,11 @@ class RecipeIndexView(ListView):
     template_name = "virtualPantry_app/recipe_index.html"
 
     def get_queryset(self):
-        return RecipeDescription.objects.filter(recipe_list_id=self.kwargs["index_id"])
+        return RecipeDescription.objects.filter(recipe_list_id=1)
 
     def get_context_data(self):
         context = super().get_context_data()
-        context["recipe_list"] = RecipeIndex.objects.get(id=self.kwargs["index_id"])
+        context["recipe_list"] = RecipeIndex.objects.get(id=1)
         return context
 
     

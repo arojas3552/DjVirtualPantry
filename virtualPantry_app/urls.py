@@ -9,13 +9,13 @@ urlpatterns = [
         views.ItemListView.as_view(), name="list"),
     
     path(
-        "recipe/<int:index_id>/",
+        "recipe/",
         views.RecipeIndexView.as_view(),
         name="recipe-index",
     ),
 
     path(
-        "recipe/<int:index_id>/recipeid/<int:recipe_id>/",
+        "recipe/<int:recipe_id>/",
         views.RecipeIngredientView.as_view(),
         name="recipe-view",
     ),
@@ -48,17 +48,17 @@ urlpatterns = [
 
     #ADD 
     path(
-        "recipe/add/",
+        "recipe/addIndex/",
         views.RecipeIndexCreate.as_view(),
         name="recipeIndex-add",
     ),
     path(
-        "recipe/<int:index_id>/recipeid/add",
+        "recipe/addRecipe",
         views.RecipeCreate.as_view(),
         name="recipe-add",
     ),
     path(
-        "recipe/<int:index_id>/recipeid/<int:recipe_id>/ingredient/add/",
+        "recipe/<int:recipe_id>/ingredient/add/",
         views.IngredientCreate.as_view(),
         name="ingredient-add",
     ),
