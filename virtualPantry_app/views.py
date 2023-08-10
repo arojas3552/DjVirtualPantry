@@ -3,6 +3,8 @@ from django.views.generic import (ListView,CreateView,UpdateView,DeleteView)
 
 from .models import FoodList, Product, RecipeIndex, Ingredients,RecipeDescription
 
+
+
 #LIST
 class ListListView(ListView):
     model = FoodList
@@ -20,6 +22,16 @@ class ItemListView(ListView):
         context["food_list"] = FoodList.objects.get(id=self.kwargs["list_id"])
         return context
     
+class RecListView(ListView):
+    model = RecipeDescription
+    template_name="virtualPantry_app/recipe_rec_list.html"
+
+    def get_queryset(self):
+        return RecipeDescription.objects.filter(recipe_list_id=1)
+
+    def get_context_data(self):
+        context = super().get_context_data()
+        return context
 
 #RECIPE FEATURE
 class RecipeIndexView(ListView):
@@ -28,13 +40,7 @@ class RecipeIndexView(ListView):
 
     def get_queryset(self):
         return RecipeDescription.objects.filter(recipe_list_id=1)
-
-    def get_context_data(self):
-        context = super().get_context_data()
-        context["recipe_list"] = RecipeIndex.objects.get(id=1)
-        return context
-
-    
+ 
 
 class RecipeIngredientView(ListView):
     model=Ingredients
@@ -48,7 +54,6 @@ class RecipeIngredientView(ListView):
         context["recipe_instructions"] = RecipeDescription.objects.get(id=self.kwargs["recipe_id"])
         context["recipe_name"] = RecipeDescription.objects.get(id=self.kwargs["recipe_id"])
         return context
-    
 
 #CREATE
 
@@ -66,7 +71,6 @@ class ItemCreate(CreateView):
     fields = [
         "food_list",
         "productName",
-        "category",
         "expire_date",
     ]
 
@@ -81,7 +85,6 @@ class ItemCreate(CreateView):
         food_list = FoodList.objects.get(id=self.kwargs["list_id"])
         context["food_list"] = food_list
         context["productName"] = "Add a new food item"
-        context["category"] = "Add category"
         return context
 
     def get_success_url(self):

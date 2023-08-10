@@ -21,7 +21,7 @@ class RecipeDescription(models.Model):
         ("b", "Breakfast"),
         ("l", "Lunch"),
         ("d", "Dinner"),
-        ("t", "Desert"),
+        ("t", "Dessert"),
         ("s", "Snack"),
         ("o", "Other"),
     ]
@@ -43,6 +43,7 @@ class Ingredients(models.Model):
     def __str__(self):
         return self.ingredientName
     
+
 
 class FoodList(models.Model):
     title = models.CharField(max_length=100, unique=True)

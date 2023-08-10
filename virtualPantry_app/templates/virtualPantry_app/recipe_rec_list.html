@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3>Recipe Recommendations based on your pantry</h3>
+
+<ul >
+  {% for recipe in object_list %}
+  <li>
+      <div
+          role="button"
+          onclick="location.href='{% url "recipe-view" recipe.id %}'">
+          {{ recipe.recipeName }}
+      </div>
+  </li>
+
+  {% endfor %}
+</ul>
+{% endblock %}

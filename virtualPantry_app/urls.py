@@ -8,6 +8,9 @@ urlpatterns = [
     path("list/<int:list_id>/",
         views.ItemListView.as_view(), name="list"),
     
+    path("list/<int:list_id>/recipe/",
+        views.RecListView.as_view(), name="rec-view"),
+
     path(
         "recipe/",
         views.RecipeIndexView.as_view(),
