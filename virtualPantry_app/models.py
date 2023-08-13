@@ -7,6 +7,7 @@ from django.urls import reverse
 def one_week_hence():
     return timezone.now() + timezone.timedelta(days=7) #in one week...
 
+
 class RecipeIndex(models.Model):
     indexName = models.CharField(max_length=250, unique=True)
 

@@ -1,8 +1,8 @@
 from django.urls import reverse, reverse_lazy
 from django.views.generic import (ListView,CreateView,UpdateView,DeleteView)
+from .selectors import recommendRecipe
 
 from .models import FoodList, Product, RecipeIndex, Ingredients,RecipeDescription
-
 
 
 #LIST
@@ -27,7 +27,8 @@ class RecListView(ListView):
     template_name="virtualPantry_app/recipe_rec_list.html"
 
     def get_queryset(self):
-        return RecipeDescription.objects.filter(recipe_list_id=1)
+        matchingNames= recommendRecipe(self.kwargs['list_id'])
+        return RecipeDescription.objects.filter(id__in=matchingNames)
 
     def get_context_data(self):
         context = super().get_context_data()
