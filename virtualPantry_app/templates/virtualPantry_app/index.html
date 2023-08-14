@@ -3,7 +3,7 @@
 {% block content %}
 <!--index.html-->
 
-<div class="jumbotron jumbotron-fluid bg-light" >
+<div class="jumbotron jumbotron-fluid bg-light">
     <div class="container">
       <h1 class="display-4">Virtual Pantry</h1>
       <p class="lead">Don't know what to make with what's in your fridge?  </p>
@@ -32,10 +32,15 @@
     </div>
 </div>
   
-<div class="jumbotron jumbotron-fluid " >
+<div class="jumbotron jumbotron-fluid" onclick="location.href='{% url "recipe-index" %}'" >
     <div class="container">
       <h1 class="display-5">View Recipes</h1>
       <p class="lead">View our recipe database</p>
+      <button
+        type="button" class="btn btn-dark btn-sm "
+        onclick="location.href='{% url "recipe-index"  %}'">
+        <h4> Recipes </h4>
+    </button>
     </div>
 </div>
 
