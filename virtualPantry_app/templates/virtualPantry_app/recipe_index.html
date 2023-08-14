@@ -5,11 +5,13 @@
 
 <h1>Recipe page</h1>
 
-<ul >
+
+<ul class="list-group list-group-flush" >
     {% for recipe in object_list %}
-    <li>
+    <li class="list-group-item">
         <div
             role="button"
+            class="btn btn-primary"
             onclick="location.href='{% url "recipe-view" recipe.id %}'">
             {{ recipe.recipeName }}
         </div>

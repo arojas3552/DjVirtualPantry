@@ -5,14 +5,16 @@
 <div>
     <div>
         <div>
-            <h5 class="text-black-50">{{ food_list.title }}</h5>
+            <h3  class="text-black ">{{ food_list.title }} </h3>
+            
         </div>
-        <ul>
+        <ul class="list-group list-group-flush">
             {% for food in object_list %}
-            <li>
+            <li class="list-group-item">
                 <div >
                     <div
                         role="button"
+                        class="btn btn-primary"
                         onclick="location.href='{% url "item-update" food_list.id food.id %}'">
                         {{ food.productName }}
                       
@@ -24,18 +26,21 @@
             {% endfor %}
         </ul>
         <p>
-            <input
+                <input
                 value="Add a new item"
                 type="button"
+                class="btn btn-dark btn-floating"
                 onclick="location.href='{% url "item-add" food_list.id %}'" />
                 <input
                 value="Delete all items in your fridge"
                 type="button"
+                class="btn btn-dark btn-floating"
                 onclick="location.href=
                 '{% url "list-delete" food_list.id %}'" />
                 <input
                 value="Suggest recipes based on your items"
                 type="button"
+                class="btn btn-dark btn-floating"
                 onclick="location.href=
                 '{% url "rec-view" food_list.id  %}'" />
         </p>

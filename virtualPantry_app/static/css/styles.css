@@ -4,9 +4,32 @@
   padding-bottom: 70px;
 }
 
+.navbar {
+  padding-bottom: 70px;
+  margin-top: 10px;
+}
+
 .bg-4 {
   background-color: #2f2f2f;
   color: #dbd8d8;
   padding-top: 70px;
   padding-bottom: 70px;
+}
+
+.list-group-item {
+  padding-top: 40px;
+  padding-bottom: 50px;
+  margin: 2px 0;
+}
+
+.btn-primary {
+  color: #000000;
+  background-color:transparent;
+  border-color: transparent; /*set the color you want here*/
+}
+
+.btn-primary:hover {
+  color: #43bbd9;
+  background-color: transparent;
+  border-color: transparent; 
 }
