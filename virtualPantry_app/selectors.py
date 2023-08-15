@@ -6,7 +6,7 @@ from django.db.models.functions import Lower
 
 
 
-def recommendRecipe(list_id):
+def recommendRecipe():
 
     #matchingNames = (FoodList.objects.filter(FoodList(list_id))._meta.get_field("title")).intersection((RecipeDescription.objects.filter(recipe_list_id=1)._meta.get_field("recipeName"))))
     #recipeList.objects.filter()

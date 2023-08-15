@@ -27,7 +27,7 @@ class RecListView(ListView):
     template_name="virtualPantry_app/recipe_rec_list.html"
 
     def get_queryset(self):
-        matchingNames= recommendRecipe(self.kwargs['list_id'])
+        matchingNames= recommendRecipe()
         return RecipeDescription.objects.filter(id__in=matchingNames)
 
     def get_context_data(self):
