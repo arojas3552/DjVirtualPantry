@@ -1,3 +1,6 @@
+body {
+  margin:0px;
+}
 
 .jumbotron {
   padding-top: 70px;
@@ -7,13 +10,6 @@
 .navbar {
   padding-bottom: 70px;
   margin-top: 10px;
-}
-
-.bg-4 {
-  background-color: #2f2f2f;
-  color: #dbd8d8;
-  padding-top: 70px;
-  padding-bottom: 70px;
 }
 
 .list-group-item {

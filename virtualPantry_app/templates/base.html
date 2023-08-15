@@ -18,7 +18,6 @@
 </head>
 
 <body>
-
     <div class="container-fluid">
         <ul class="navbar bg-white ">
             <a class="navbar-brand link-dark" onclick="location.href='{% url "index" %}'">Virtual Pantry</a>
@@ -39,14 +38,15 @@
         <div class="container-fluid">
             {% block content %}
 
-            This content will be replaced by different html code for each page.
             {% endblock %}
         </div>
     </div>
 
-    <footer class="container-fluid bg-4 text-center">
-        <p>Alma Rojas :)</p>
-      </footer>
+    <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50 mt-5">
+    <div class="container text-center">
+      <small> Alma Rojas :)</small>
+    </div>
+  </footer>
 
 </body>
 

@@ -1,19 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
 <!--recipe_list.html-->
-<h1>{{recipe_name}}</h1>
 
-<ul>
-    {% for ingredientList in object_list %}
-    <li>
-        <div>
-            {{ ingredientList.ingredientName }}
-        </div>
-    </li>
-    {% endfor %}
-</ul>
+<div> 
+    <h1>{{recipe_name}}</h1>
 
-<h3>Instructions: </h3>
-{{recipe_instructions.recipe_instructions}}
+    <ul>
+        {% for ingredientList in object_list %}
+        <li>
+            <div>
+                {{ ingredientList.ingredientName }}
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h3>Instructions: </h3>
+    {{recipe_instructions.recipe_instructions}}
+
+</div>
 
 {% endblock %}
