@@ -21,6 +21,7 @@ class ItemListView(ListView):
         context = super().get_context_data()
         context["food_list"] = FoodList.objects.get(id=self.kwargs["list_id"])
         return context
+
     
 class RecListView(ListView):
     model = RecipeDescription

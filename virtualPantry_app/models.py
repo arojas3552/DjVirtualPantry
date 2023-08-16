@@ -67,7 +67,7 @@ class Product(models.Model):
     ]
 
     productName = models.CharField(max_length=200,unique=True)
-    category = models.CharField(max_length=1, choices=PRODUCT_CATEGORIES)
+    category = models.CharField(max_length=1, choices=PRODUCT_CATEGORIES, default="Other")
     entry_date = models.DateTimeField(auto_now_add=True)
     expire_date = models.DateTimeField(default=one_week_hence)
     food_list = models.ForeignKey(FoodList, on_delete=models.CASCADE)
