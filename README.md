@@ -2,6 +2,9 @@
 
 A simple site using Django and Bootstrap that holds a database of recipes, as well as your grocery list. Recipes are recommended to you if you have at least one of the ingredients in the database of recipes. 
 
+Open Demo: 
+Website_Visual.mov
+
 Running it: 
 mac
 1. pip install virtualenv
